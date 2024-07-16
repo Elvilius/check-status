@@ -7,6 +7,7 @@ import (
 	"testing"
 
 	"github.com/Elvilius/check-status/internal/models"
+	"github.com/Elvilius/check-status/internal/monitor"
 	"github.com/Elvilius/check-status/pkg/config"
 	"github.com/stretchr/testify/assert"
 )
@@ -51,7 +52,7 @@ func TestFetcher_fetchStatus(t *testing.T) {
 
 	mockStorage := &MockStorage{}
 
-	f := NewFetcher(providerCfg, mockStorage)
+	f := NewFetcher(providerCfg, mockStorage, monitor.NewMonitor())
 
 	f.fetchStatus()
 

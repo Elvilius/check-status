@@ -100,12 +100,16 @@ Each ProviderConfig contains the following fields:
 - AuthHeaders: A map of authentication headers required by the provider's API.
 - Adapter: An implementation of the Adapter interface to adapt the provider's response to models.OrderStatus.
 - Implementing an Adapter
-You need to implement an adapter that converts the provider's response into the models.OrderStatus format. Here's an example
-
-
 
 ## Implementing an Adapter
 You need to implement an adapter that converts the provider's response into the models.OrderStatus format. Here's an example:
+
+```go
+type OrderStatus struct {
+	OrderID int
+	Status  string
+}
+```
 
 ```go
 type YourProviderAdapter struct{}
@@ -116,3 +120,18 @@ func (a *YourProviderAdapter) AdaptResponse(data []byte) ([]models.OrderStatus, 
 ```
 ## Fetching Order Status
 Once CheckStatus is initialized and running, you can fetch the status of an order using its ID
+
+## Monitoring
+CheckStatus provides methods to retrieve metrics about the fetching process:
+
+```go
+// GetMetrics returns the number of successful fetches, the number of failed fetches, and the total duration of all fetches.
+func (cs *CheckStatus) GetMetrics() (int, int, time.Duration) {
+	return cs.monitor.GetMetrics()
+}
+
+// GetMessageMetric returns a summary message of the fetch metrics.
+func (cs *CheckStatus) GetMessageMetric() string {
+	return cs.monitor.GetMessageMetric()
+}
+```
