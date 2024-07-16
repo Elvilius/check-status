@@ -35,8 +35,7 @@ package main
 
 import (
 	"github.com/Elvilius/check-status"
-	"github.com/Elvilius/check-status/internal/config"
-	"time"
+	"github.com/Elvilius/check-status/pkg/config"
 )
 
 func main() {
@@ -44,7 +43,7 @@ func main() {
 		{
 			URL: "http://example.com/api/order-status",
 			Method: "GET",
-			Interval: 1 * time.Second,
+			Interval: 10,
 			AuthHeaders: map[string]string{
 				"Authorization": "Bearer your_token",
 			},
@@ -55,6 +54,7 @@ func main() {
 
 	cs := check_status.NewCheckStatus(providerConfigs)
 
+	time.Sleep(10 * time.Second)
 	// Use cs to get order status
 	orderID := 12345
 	status, err := cs.GetOrderStatus(orderID)
@@ -116,12 +116,3 @@ func (a *YourProviderAdapter) AdaptResponse(data []byte) ([]models.OrderStatus, 
 ```
 ## Fetching Order Status
 Once CheckStatus is initialized and running, you can fetch the status of an order using its ID
-
-```go
-orderID := 12345
-status, err := cs.GetOrderStatus(orderID)
-if err != nil {
-	// Handle error
-}
-// Use status
-```
