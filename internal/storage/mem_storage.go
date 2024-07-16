@@ -2,7 +2,6 @@ package storage
 
 import (
 	"errors"
-	"fmt"
 	"sync"
 
 	"github.com/Elvilius/check-status/internal/models"
@@ -24,7 +23,6 @@ func (ms *MemoryStorage) Save(orderID int, status models.OrderStatus) error {
 	defer ms.mu.Unlock()
 	ms.data[orderID] = status
 
-	fmt.Println(ms.data)
 	return nil
 }
 

@@ -2,11 +2,9 @@ package fetcher
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
-	"time"
 
 	"github.com/Elvilius/check-status/internal/models"
 	"github.com/Elvilius/check-status/pkg/config"
@@ -44,11 +42,10 @@ func TestFetcher_fetchStatus(t *testing.T) {
 	}))
 	defer server.Close()
 
-	fmt.Println(server)
 	providerCfg := config.ProviderConfig{
 		URL:         server.URL,
 		Method:      http.MethodGet,
-		Interval:    1 * time.Second,
+		Interval:    1,
 		AuthHeaders: map[string]string{"Authorization": "Bearer token"},
 	}
 
