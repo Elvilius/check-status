@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Elvilius/check-status/internal/config"
 	"github.com/Elvilius/check-status/internal/models"
+	"github.com/Elvilius/check-status/pkg/config"
 	"github.com/stretchr/testify/assert"
 )
 

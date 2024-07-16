@@ -1,11 +1,11 @@
 package check_status
 
 import (
-	"github.com/Elvilius/check-status/internal/config"
 	"github.com/Elvilius/check-status/internal/fetcher"
 	"github.com/Elvilius/check-status/internal/interfaces"
 	"github.com/Elvilius/check-status/internal/models"
 	"github.com/Elvilius/check-status/internal/storage"
+	"github.com/Elvilius/check-status/pkg/config"
 )
 
 type CheckStatus struct {

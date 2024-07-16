@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/Elvilius/check-status/internal/adapter"
-	"github.com/Elvilius/check-status/internal/config"
 	"github.com/Elvilius/check-status/internal/interfaces"
+	"github.com/Elvilius/check-status/pkg/config"
 )
 
 type Fetcher struct {
